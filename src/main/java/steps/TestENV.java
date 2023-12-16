@@ -13,6 +13,13 @@ public class TestENV {
     @Value("${env}")
     private String env;
 
+    @Value("${extent}")
+    private boolean extent;
+
+    public boolean isExtent() {
+        return extent;
+    }
+
     public String getEnv() {
         return env;
     }

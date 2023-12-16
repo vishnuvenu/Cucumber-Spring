@@ -1,4 +1,6 @@
 
+import com.aventstack.extentreports.ExtentReports;
+import com.aventstack.extentreports.reporter.ExtentSparkReporter;
 import io.cucumber.testng.CucumberOptions;
 import net.masterthought.cucumber.Configuration;
 import net.masterthought.cucumber.ReportBuilder;
@@ -15,13 +17,14 @@ import java.util.List;
 
 
 @CucumberOptions(
-        tags= "@smokeTest or @smokeTest1",
+        tags= "@smokeTest or @smokeTest111",
         features="src\\main\\resources",
         glue = {"steps","hooks"},
         plugin = {
                 "pretty",
                 "html:target/cucumber-reports-testng/cucumber-reports.html",
                 "json:target/cucumber-reports-testng/cucumber.json"
+              //  "com.aventstack.extentreports.cucumber.adapter.ExtentCucumberAdapter:"
         },
         monochrome = true
 
@@ -38,6 +41,7 @@ public class RunCucumberTest extends AbstractTestNGCucumberTests {
     public void afterSuite(){
         System.out.println("after this suite");
         generateReport();
+        extentReport();
     }
 
     @DataProvider(parallel = true)
@@ -57,4 +61,14 @@ public class RunCucumberTest extends AbstractTestNGCucumberTests {
         reportBuilder.generateReports();
 
     }
+
+
+
+    private void  extentReport(){
+        ExtentReports extent = new ExtentReports();
+        ExtentSparkReporter spark = new ExtentSparkReporter(System.getProperty("user.dir")+"target\\cucumber-reports-testng\\ExtentReport.html");
+        extent.attachReporter(spark);
+
+    }
+
 }

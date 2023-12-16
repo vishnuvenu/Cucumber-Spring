@@ -1,6 +1,6 @@
 Feature:  this is feature1
-  @smokeTest1
-  @smokeTest2
+  @smokeTest
+
 
   Scenario: this is test scenario 1
 
